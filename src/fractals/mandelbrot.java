@@ -17,7 +17,7 @@ import javax.swing.JApplet;
 public class mandelbrot extends JApplet {
     Color[] col;
     int v,n=100;
-    double t,d=4;
+    double t,d=-10;
     /**
      * Initialization method that will be called after the applet is loaded into
      * the browser.
