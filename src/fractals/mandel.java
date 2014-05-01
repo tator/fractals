@@ -36,8 +36,8 @@ public class mandel extends JApplet  {
 
         frame = new JFrame();
         frame.setVisible(true);
-        frame.setSize(840, 840);
-        frame.setLocation(100, 100);
+        frame.setSize(800, 800);
+        //frame.setLocation(100, 100);
         frame.setTitle("Mandelbrot set");
 
         Container contentpane = frame.getContentPane();
