@@ -55,12 +55,12 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
                     if (x == 0.0 && y == 0.0) {
                         u = (t * a + xmin);
                     } else if (x != 0 || y != 0) {
-                        u = Math.pow((x * x + y * y), (d / 2.0)) * Math.cos(d * Math.atan2(y, x)) + (t * a +xmin);
+                        u = Math.pow((x * x + y * y), (d / 2.0)) * Math.cos(d * Math.atan2(y, x)) + (t * a + xmin);
                     }
                     if (x == 0 && y == 0) {
                         y = (t * b + ymin);
                     } else if (x != 0 || y != 0) {
-                        y = Math.pow((x * x + y * y), (d / 2.0)) * Math.sin(d * Math.atan2(y, x)) + (t * b +ymin);
+                        y = Math.pow((x * x + y * y), (d / 2.0)) * Math.sin(d * Math.atan2(y, x)) + (t * b + ymin);
                     }
 
                     x = u;
@@ -118,17 +118,18 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
         }
         if (e.getKeyCode() == 0x26) {
             d += inc;
-
+            repaint();
         }
         if (e.getKeyCode() == 0x28) {
             d -= inc;
+            repaint();
         }
-        if (Math.abs(d - ((int) (d + .5))) <= 0.0000000005) {
+        if (Math.abs(d - ((int) (d +((d>0)?.5:-5)))) <= 0.0000000005) {
             d = (double) ((int) (d + .5));
         }
         System.out.println(inc + " " + d);
         System.out.println(Math.abs(d - ((int) (d + .5))) + "\n");
-        repaint();
+        
     }
 
     @Override
