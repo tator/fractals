@@ -116,11 +116,34 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
             xrhold = xRange() * zoom_scale;
             yrhold = yRange() * zoom_scale;
         }
+        if(xrhold >4.0 && yrhold >4.0){
+            xrhold = 4.0;
+            yrhold = 4.0;
+        }
         System.out.println(xrhold + " " + yrhold);
         xmin = pointX - (xrhold / 2.0);
         xmax = pointX + (xrhold / 2.0);
+        if(xmin<-2.0){
+            xmin = -2.0;
+            xmax = -2.0 +xrhold;
+        }
+        if(xmax > 2.0){
+            xmax = 2.0;
+            xmin = 2.0-xrhold;
+        }
         ymin = pointY - (yrhold / 2.0);
         ymax = pointY + (yrhold / 2.0);
+        if(ymin<-2.0){
+            ymin = -2.0;
+            ymax = -2.0 +xrhold;
+        }
+        if(ymax > 2.0){
+            ymax = 2.0;
+            ymin = 2.0-xrhold;
+        }
+        System.out.println(xmin +" "+xmax);
+        System.out.println(ymin +" "+ymax);
+        System.out.println();
         repaint();
     }
 
