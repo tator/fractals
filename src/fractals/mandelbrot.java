@@ -47,12 +47,17 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
         g.setColor(Color.black);
         g.fillRect(0, 0, v, v);
         t = t();
+        int lastper=0;
         //System.out.println(t+"\n"+xmin +"\n"+xmax);
         for (int a = 0; a <= v; a++) {
             for (int b = 0; b <= v; b++) {
+                if(lastper != 10*(int)(((a*v+b)/(double)(v*v+b))*10)){
+                    lastper = 10*(int)(((a*v+b)/(double)(v*v))*10);
+                    System.out.printf("%d\n",10*(int)(((a*v+b)/(double)(v*v))*10));
+                }
                 double x = 0.0, y = 0.0, u = 0.0;
                 int q = 0;
-                while (q <= (int)(n*Math.pow(1. +(1.0/zoom_scale),count)) && (x * x + y * y) < 4) {
+                while (q <= (int)(n*Math.pow(1. +(1.0/(zoom_scale*2.0)),count)) && (x * x + y * y) < 4) {
                     if (x == 0.0 && y == 0.0) {
                         u = (t * a + xmin);
                     } else if (x != 0 || y != 0) {
@@ -145,7 +150,7 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
             ymin = 2.0-xrhold;
         }
         System.out.println("inc: " + inc + " d: " + d);
-        System.out.println("count: "+count + " n: "+(int)(n*Math.pow(1. +(1.0/zoom_scale),count)));
+        System.out.println("count: "+count + " n: "+(int)(n*Math.pow(1. +(1.0/(zoom_scale*2.0)),count)));
         System.out.println("xmin: "+xmin +" xmax: "+xmax);
         System.out.println("ymin: "+ymin +" ymax: "+ymax);
         System.out.println();
@@ -191,7 +196,7 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
             d = (double) ((int) (d + .5));
         }
         System.out.println("inc: " + inc + " d: " + d);
-        System.out.println("count: "+count + " n: "+(int)n*Math.pow(1. +(1.0/zoom_scale),count));
+        System.out.println("count: "+count + " n: "+(int)n*Math.pow(1. +(1.0/(zoom_scale*2.0)),count));
         System.out.println("xmin: "+xmin +" xmax: "+xmax);
         System.out.println("ymin: "+ymin +" ymax: "+ymax);
         System.out.println();
