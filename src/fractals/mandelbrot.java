@@ -16,7 +16,7 @@ import javax.swing.*;
 public class mandelbrot extends JPanel implements MouseListener, KeyListener {
 
     Color[] col = {Color.MAGENTA, Color.RED, Color.PINK, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.BLUE};
-    int v, n = 100;
+    int v, n = 50,count =0;
     double t, d = 2;
     double inc = 1;
     public static double xmin, xmax, ymin, ymax;
@@ -52,7 +52,7 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
             for (int b = 0; b <= v; b++) {
                 double x = 0.0, y = 0.0, u = 0.0;
                 int q = 0;
-                while (q <= n && (x * x + y * y) < 4) {
+                while (q <= (int)(n*Math.pow(1. +(1.0/zoom_scale),count)) && (x * x + y * y) < 4) {
                     if (x == 0.0 && y == 0.0) {
                         u = (t * a + xmin);
                     } else if (x != 0 || y != 0) {
@@ -99,28 +99,31 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
     public void mousePressed(MouseEvent e) {
         pointX = t() * e.getPoint().x + xmin;
         pointY = t() * e.getPoint().y + ymin;
-        System.out.println(pointX + " " + pointY);
-        System.out.println(e.getButton());
+        //System.out.println(pointX + " " + pointY);
+        //System.out.println(e.getButton());
         double xrhold = 4.0, yrhold = 4.0;
         if (e.getButton() == 1) {
             xrhold = xRange() / zoom_scale;
             yrhold = yRange() / zoom_scale;
+            count ++;
         } else if (e.getButton() == 2) {
             xmin = -2.0;
             xmax = 2.0;
             ymin = -2.0;
             ymax = 2.0;
+            count = 0;
             repaint();
             return;
         } else if (e.getButton() == 3) {
             xrhold = xRange() * zoom_scale;
             yrhold = yRange() * zoom_scale;
+            count--;
         }
         if(xrhold >4.0 && yrhold >4.0){
             xrhold = 4.0;
             yrhold = 4.0;
         }
-        System.out.println(xrhold + " " + yrhold);
+        //System.out.println(xrhold + " " + yrhold);
         xmin = pointX - (xrhold / 2.0);
         xmax = pointX + (xrhold / 2.0);
         if(xmin<-2.0){
@@ -141,8 +144,10 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
             ymax = 2.0;
             ymin = 2.0-xrhold;
         }
-        System.out.println(xmin +" "+xmax);
-        System.out.println(ymin +" "+ymax);
+        System.out.println("inc: " + inc + " d: " + d);
+        System.out.println("count: "+count + " n: "+(int)(n*Math.pow(1. +(1.0/zoom_scale),count)));
+        System.out.println("xmin: "+xmin +" xmax: "+xmax);
+        System.out.println("ymin: "+ymin +" ymax: "+ymax);
         System.out.println();
         repaint();
     }
@@ -186,7 +191,10 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
             d = (double) ((int) (d + .5));
         }
         System.out.println("inc: " + inc + " d: " + d);
-
+        System.out.println("count: "+count + " n: "+(int)n*Math.pow(1. +(1.0/zoom_scale),count));
+        System.out.println("xmin: "+xmin +" xmax: "+xmax);
+        System.out.println("ymin: "+ymin +" ymax: "+ymax);
+        System.out.println();
         if (e.getKeyCode() == 0x20) {
             repaint();
         }
