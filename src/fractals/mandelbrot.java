@@ -22,6 +22,7 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
     public static double xmin, xmax, ymin, ymax;
     double pointX, pointY;
     double zoom_scale = 4.0;
+    boolean show = false;
 
     /**
      * Initialization method that will be called after the applet is loaded into
@@ -85,7 +86,48 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
                 g.drawLine(a, b, a, b);
             }
         }
+        if (show) {
+            showing();
+        }
+    }
 
+    public void showing() {
+        double xrhold = 4.0, yrhold = 4.0;
+        xrhold = xRange() * zoom_scale;
+            yrhold = yRange() * zoom_scale;
+            count--;
+            if (xrhold > 4.0 && yrhold > 4.0) {
+            xrhold = 4.0;
+            yrhold = 4.0;
+            show = false;
+        }
+        //System.out.println(xrhold + " " + yrhold);
+        xmin = pointX - (xrhold / 2.0);
+        xmax = pointX + (xrhold / 2.0);
+        if (xmin < -2.0) {
+            xmin = -2.0;
+            xmax = -2.0 + xrhold;
+        }
+        if (xmax > 2.0) {
+            xmax = 2.0;
+            xmin = 2.0 - xrhold;
+        }
+        ymin = pointY - (yrhold / 2.0);
+        ymax = pointY + (yrhold / 2.0);
+        if (ymin < -2.0) {
+            ymin = -2.0;
+            ymax = -2.0 + xrhold;
+        }
+        if (ymax > 2.0) {
+            ymax = 2.0;
+            ymin = 2.0 - xrhold;
+        }
+        System.out.println("inc: " + inc + " d: " + d);
+        System.out.println("count: " + count + " n: " + (int) (n * Math.pow(1. + (1.0 / (zoom_scale * 2.0)), count)));
+        System.out.println("xmin: " + xmin + " xmax: " + xmax);
+        System.out.println("ymin: " + ymin + " ymax: " + ymax);
+        System.out.println();
+        repaint();
     }
 
     public double t() {
@@ -186,6 +228,9 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         //System.out.println(e.getKeyCode());
+        if(e.getKeyCode()==0x53){
+            show = !show;
+        }
         if (e.getKeyCode() == 0x25) {
             inc = inc / 10.0;
         }
