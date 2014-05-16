@@ -94,9 +94,9 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
     public void showing() {
         double xrhold = 4.0, yrhold = 4.0;
         xrhold = xRange() * zoom_scale;
-            yrhold = yRange() * zoom_scale;
-            count--;
-            if (xrhold > 4.0 && yrhold > 4.0) {
+        yrhold = yRange() * zoom_scale;
+        count--;
+        if (xrhold > 4.0 && yrhold > 4.0) {
             xrhold = 4.0;
             yrhold = 4.0;
             show = false;
@@ -127,7 +127,9 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
         System.out.println("xmin: " + xmin + " xmax: " + xmax);
         System.out.println("ymin: " + ymin + " ymax: " + ymax);
         System.out.println();
-        repaint();
+        if (show) {
+            repaint();
+        }
     }
 
     public double t() {
@@ -172,11 +174,15 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
             yrhold = yRange() * zoom_scale;
             count--;
         }
+        if(xrhold != yrhold){
+            xrhold = Math.max(xrhold, yrhold);
+            yrhold = xrhold;
+        }
         if (xrhold > 4.0 && yrhold > 4.0) {
             xrhold = 4.0;
             yrhold = 4.0;
         }
-        //System.out.println(xrhold + " " + yrhold);
+        
         xmin = pointX - (xrhold / 2.0);
         xmax = pointX + (xrhold / 2.0);
         if (xmin < -2.0) {
@@ -199,6 +205,7 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
         }
         System.out.println("inc: " + inc + " d: " + d);
         System.out.println("count: " + count + " n: " + (int) (n * Math.pow(1. + (1.0 / (zoom_scale * 2.0)), count)));
+        System.out.println("x range: "+xrhold + " y ranger: " + yrhold);
         System.out.println("xmin: " + xmin + " xmax: " + xmax);
         System.out.println("ymin: " + ymin + " ymax: " + ymax);
         System.out.println();
@@ -228,7 +235,7 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         //System.out.println(e.getKeyCode());
-        if(e.getKeyCode()==0x53){
+        if (e.getKeyCode() == 0x53) {
             show = !show;
         }
         if (e.getKeyCode() == 0x25) {
