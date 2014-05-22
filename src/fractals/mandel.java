@@ -30,20 +30,13 @@ public class mandel extends JApplet  {
     mandelbrot mand;
     @Override
     public void init() {
-        //cb = new cb(); 
-        //getContentPane().add(new cb()); 
-
-
         frame = new JFrame();
         frame.setVisible(true);
         frame.setSize(800, 800);
-        //frame.setLocation(100, 100);
         frame.setTitle("Mandelbrot set");
-
         Container contentpane = frame.getContentPane();
         contentpane.add(mand = new mandelbrot());
         mand.requestFocus();
-       
     }
 
 }
