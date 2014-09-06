@@ -21,7 +21,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * <strong>Author:</strong> Tator & SeaSee
+ * <strong>Author:</strong> Tator 
  * <p>
  * <strong>Version:</strong> win.1.3
  */
@@ -32,9 +32,9 @@ public class mandel extends JApplet  {
     public void init() {
         frame = new JFrame();
         frame.setVisible(true);
-        frame.setSize(800, 800);
+        frame.setSize(500, 500);
         frame.setTitle("Mandelbrot set");
-        Container contentpane = frame.getContentPane();
+      Container contentpane = frame.getContentPane();
         contentpane.add(mand = new mandelbrot());
         mand.requestFocus();
     }

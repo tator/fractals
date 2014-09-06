@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fractals;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-/**
- *
- * @author Baron Laptop
- */
+
 public class mandelbrot extends JPanel implements MouseListener, KeyListener {
 
     Color[] col = {Color.MAGENTA, Color.RED, Color.PINK, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.BLUE};
@@ -87,6 +79,7 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
                 g.drawLine(a, b, a, b);
             }
         }
+        print();
         if (show) {
             showing();
         }
@@ -128,6 +121,13 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
             ymax = 2.0;
             ymin = 2.0 - xrhold;
         }
+       
+        if (show) {
+            repaint();
+        }
+    }
+    public void print(){
+        System.out.println("\n\n\n");
         System.out.println("inc: " + inc + " d: " + d);
         System.out.println("count: " + count + " n: " + (int) (n * Math.pow(1. + (1.0 / (zoom_scale * 2.0)), count)));
         System.out.println("showing "+show);
@@ -135,11 +135,7 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
         System.out.println("xmin: " + xmin + " xmax: " + xmax);
         System.out.println("ymin: " + ymin + " ymax: " + ymax);
         System.out.println();
-        if (show) {
-            repaint();
-        }
     }
-
     public double t() {
         return xRange() / (double) v;
     }
@@ -212,13 +208,6 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
             ymax = 2.0;
             ymin = 2.0 - xrhold;
         }
-        System.out.println("inc: " + inc + " d: " + d);
-        System.out.println("count: " + count + " n: " + (int) (n * Math.pow(1. + (1.0 / (zoom_scale * 2.0)), count)));
-        System.out.println("showing "+show);
-        System.out.println("x range: "+xrhold + " y ranger: " + yrhold);
-        System.out.println("xmin: " + xmin + " xmax: " + xmax);
-        System.out.println("ymin: " + ymin + " ymax: " + ymax);
-        System.out.println();
         repaint();
     }
 
@@ -263,13 +252,7 @@ public class mandelbrot extends JPanel implements MouseListener, KeyListener {
         if (Math.abs(d - ((int) (d + ((d > 0) ? .5 : -5)))) <= 0.0000000005) {
             d = (double) ((int) (d + .5));
         }
-        System.out.println("inc: " + inc + " d: " + d);
-        System.out.println("count: " + count + " n: " + (int) (n * Math.pow(1. + (1.0 / (zoom_scale * 2.0)), count)));
-        System.out.println("showing "+show);
-        System.out.println("x range: "+xrhold + " y ranger: " + yrhold);
-        System.out.println("xmin: " + xmin + " xmax: " + xmax);
-        System.out.println("ymin: " + ymin + " ymax: " + ymax);
-        System.out.println();
+        print();
         if (e.getKeyCode() == 0x20) {
             repaint();
         }

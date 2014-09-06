@@ -54,13 +54,13 @@ public class treeFractal extends JPanel implements KeyListener {
         g.drawString("f1 " + f1 + " f2 " + f2, 50, 60);
         g.drawLine(v / 2 + vw, (7 * v) / 8+vh, v / 2+vw, (3 * v) / 4+vh);
         //branch(g, 1, 90 - o-o-o, f1, v / 2.0, (3.0 * v) / 4.0, v / 8.0);
-       // branch(g, 1, 90 - o-o, f1, v / 2.0, (3.0 * v) / 4.0, v / 8.0);
+        //branch(g, 1, 90 - o-o, f1, v / 2.0, (3.0 * v) / 4.0, v / 8.0);
        branch(g, 1, 90 - o, f1, v / 2.0, (3.0 * v) / 4.0, v / 8.0);
        //branch(g, 1, 90 , f1, v / 2.0, (3.0 * v) / 4.0, v / 8.0);
         branch(g, 1, 90 + o, f2, v / 2.0, (3.0 * v) / 4.0, v / 8.0);
         //branch(g, 1, 90 + o+o, f1, v / 2.0, (3.0 * v) / 4.0, v / 8.0);
         
-       // branch(g, 1, 90 + o+o+o, f1, v / 2.0, (3.0 * v) / 4.0, v / 8.0);
+        //branch(g, 1, 90 + o+o+o, f1, v / 2.0, (3.0 * v) / 4.0, v / 8.0);
     }
 
     public void branch(Graphics g, int nn, int oo, int f, double x, double y, double l) {
@@ -81,7 +81,7 @@ public class treeFractal extends JPanel implements KeyListener {
         //branch(g, nn, oo -o-o- o, f2, xx, yy, ll);
         //branch(g, nn, oo -o- o, f2, xx, yy, ll);
         branch(g, nn, oo - o, f1, xx, yy, ll);
-       //branch(g, nn, oo , f1, xx, yy, ll);
+        //branch(g, nn, oo , f1, xx, yy, ll);
         branch(g, nn, oo + o, f2, xx, yy, ll);
         //branch(g, nn, oo + o+o, f2, xx, yy, ll);
         //branch(g, nn, oo + o+o+o, f2, xx, yy, ll);
